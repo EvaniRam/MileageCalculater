@@ -13,8 +13,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,9 +32,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MileageCalculaterTheme {
-            val viewState by mileageViewModel.viewState.collectAsState()
+                val viewState by mileageViewModel.viewState.collectAsState()
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -57,8 +56,9 @@ class MainActivity : ComponentActivity() {
                         }
                         is MileageViewState.Success -> {
                             val mileageViewState = viewState as MileageViewState.Success
+                            val mileageValue = mileageViewState.mileage.collectAsState(initial = 0.0).value
                             Text(
-                                text = "The mileage is ${mileageViewState.mileage} MPG",
+                                text = "The mileage is $mileageValue KMPL",
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier.padding(16.dp)
                             )
