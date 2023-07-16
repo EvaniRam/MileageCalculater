@@ -1,5 +1,5 @@
 # MileageCalculater
-## Simple Mileage Calulator app to domenstrate Clean Architeure with MVVM using Jetpack Compose.
+Simple Mileage Calulator app to domenstrate Clean Architeure with MVVM using Jetpack Compose.
 
 #ScreenShots: 
 
