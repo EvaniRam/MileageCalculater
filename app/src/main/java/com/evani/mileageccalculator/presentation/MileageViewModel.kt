@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class MileageViewModel @Inject constructor(private val repository: MileageRepository): ViewModel() {
 
-    private val _viewState = MutableStateFlow<MileageViewState>(MileageViewState.Loading)
+    private val _viewState = MutableStateFlow<MileageViewState>(MileageViewState.EmptyState)
     val viewState: StateFlow<MileageViewState> = _viewState
 
      fun calculateMileage(vehicle: Vehicle) {
@@ -33,7 +33,9 @@ class MileageViewModel @Inject constructor(private val repository: MileageReposi
 }
 
 sealed class MileageViewState {
+    object EmptyState: MileageViewState()
     object Loading : MileageViewState()
     data class Success(val mileage: Flow<Double>) : MileageViewState()
     data class Error(val message: String) : MileageViewState()
+
 }
